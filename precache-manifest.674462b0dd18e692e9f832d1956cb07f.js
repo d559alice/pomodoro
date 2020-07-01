@@ -40,16 +40,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "alarms/yay.mp3"
   },
   {
-    "revision": "2fe00bfc18adf2154d2c",
-    "url": "css/about.92f04be2.css"
-  },
-  {
-    "revision": "7cec095c3230c749112c",
+    "revision": "3f4dbf70217d571b9b61",
     "url": "css/app.8bedb6cb.css"
   },
   {
     "revision": "7def86abe92486ea6b71",
     "url": "css/chunk-vendors.4881efc8.css"
+  },
+  {
+    "revision": "cc1c4eb4d964b81e0314",
+    "url": "css/list.93e3370b.css"
+  },
+  {
+    "revision": "d98b59daf6e9dc78699b",
+    "url": "css/settings.e48d3cad.css"
   },
   {
     "revision": "3dc091b5135b886e4a6a177408b55294",
@@ -456,20 +460,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/sleep_tomato.png"
   },
   {
-    "revision": "d668646cca5be555cf88aad2b5cb44f7",
+    "revision": "7bbc208f7f006fc67c32bc4067d0179d",
     "url": "index.html"
   },
   {
-    "revision": "2fe00bfc18adf2154d2c",
-    "url": "js/about.2cb12d2f.js"
+    "revision": "4ec03e0828e51403d00d",
+    "url": "js/*.84fc831c.js"
   },
   {
-    "revision": "7cec095c3230c749112c",
-    "url": "js/app.b214645b.js"
+    "revision": "3f4dbf70217d571b9b61",
+    "url": "js/app.a14c911f.js"
   },
   {
     "revision": "7def86abe92486ea6b71",
     "url": "js/chunk-vendors.c626a2cb.js"
+  },
+  {
+    "revision": "cc1c4eb4d964b81e0314",
+    "url": "js/list.f25a55e6.js"
+  },
+  {
+    "revision": "d98b59daf6e9dc78699b",
+    "url": "js/settings.41848d65.js"
   },
   {
     "revision": "3dc210960fe7e4127773465ac5d8a550",
