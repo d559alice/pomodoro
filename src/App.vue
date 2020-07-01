@@ -1,7 +1,7 @@
 <template>
   <div id="app">
   <div class="h-100 row no-gutters justify-content-center align-content-between">
-    <router-link to="/" id="title">
+    <router-link to="/home" id="title">
       <h1 style="font-size:3.5rem">POMODORO</h1>
     </router-link>
     <div id="nav" class="w-100 d-flex justify-content-between align-items-end">
