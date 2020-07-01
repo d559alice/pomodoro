@@ -2,16 +2,18 @@
   <div id="home">
     <h1>{{currentText}}</h1>
     <h2>{{timetext}}</h2>
-    <b-btn variant="primary" class="m-1" v-if="status!==1" @click="start">
+    <b-btn variant="info" class="m-1" v-if="status!==1" @click="start">
       <font-awesome-icon :icon="['fas','play']" ></font-awesome-icon>
     </b-btn>
-    <b-btn variant="primary" class="m-1" v-if="status==1" @click="pause">
+    <b-btn variant="info" class="m-1" v-if="status==1" @click="pause">
       <font-awesome-icon :icon="['fas','pause']"></font-awesome-icon>
     </b-btn>
-    <b-btn variant="primary" class="m-1" v-if="current.length>0 || todos.length>0" @click="finish(true)">
+    <b-btn variant="info" class="m-1" v-if="current.length>0 || todos.length>0" @click="finish(true)">
       <font-awesome-icon :icon="['fas','step-forward']"></font-awesome-icon>
     </b-btn>
-
+    <br>
+    <img v-if="this.$store.state.isBreak==false" :src="'./img/cute-tomato.png'" class="tomato" >
+    <img v-else :src="'./img/sleep_tomato.png'" class="tomato" >
   </div>
 </template>
 
@@ -97,3 +99,22 @@ export default {
 
 }
 </script>
+
+<style lang="stylus">
+#home
+  h1
+    color #753830
+  h2
+    color #753830
+  .tomato
+    width 250px
+    margin 2rem
+    position absolute
+    top 35%
+    left calc(50% - 125px)
+    animation: hue-rotate 5s infinite alternate
+    @keyframes hue-rotate
+      50%{
+        filter: hue-rotate(100deg);
+      }
+</style>

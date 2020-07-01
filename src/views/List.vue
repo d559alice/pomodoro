@@ -1,22 +1,28 @@
 <template>
-  <div id="list">
-    <b-form-input v-model="newtodo"></b-form-input>
-    <b-btn variant="success" @click="addTodo">新增</b-btn>
-    <b-table-simple>
+  <div id="list" class="overflow-auto">
+    <div class="px-3">
+      <b-input-group>
+        <b-form-input :type="type" v-model="newtodo" placeholder="請輸入代辦事項"></b-form-input>
+        <b-input-group-append>
+        <b-btn variant="info" @click="addTodo">新增</b-btn>
+        </b-input-group-append>
+      </b-input-group>
+
+    <b-table-simple id="my-table" :per-page="perPage" :current-page="currentPage" small class="mt-3">
       <b-thead>
         <b-tr>
           <b-th>事項</b-th>
           <b-th>動作</b-th>
         </b-tr>
       </b-thead>
-      <draggable v-model="todos" tag="tbody" v-bind="dragOption">
+      <draggable v-model="pagetodo" tag="tbody" v-bind="dragOption">
         <b-tr v-if="todos.length==0">
           <b-td colspan="2">沒有資料</b-td>
         </b-tr>
-        <b-tr v-else v-for="(todo,index) in todos" :key="index" >
+        <b-tr v-else v-for="(todo,index) in pagetodo" :key="index" >
           <b-td>
             <b-form-input v-model="todo.model" v-if="todo.edit"></b-form-input>
-            <b-btn variant="link" class="text-danger" v-if="todo.edit" @click="cancelTodo(index)">
+            <b-btn variant="link" class="text-warning" v-if="todo.edit" @click="cancelTodo(index)">
               <font-awesome-icon :icon="['fas', 'undo']"></font-awesome-icon>
             </b-btn>
             <b-btn variant="link" class="text-success" v-if="todo.edit" @click="saveTodo(index)">
@@ -35,13 +41,19 @@
         </b-tr>
       </draggable>
     </b-table-simple>
-  </div>
+
+    </div>
+    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table" id="pagination" align="center"></b-pagination>
+    </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
+      type: 'search',
+      perPage: 4,
+      currentPage: 1,
       newtodo: '',
       dragOption: {
         animation: 200
@@ -50,7 +62,10 @@ export default {
   },
   methods: {
     addTodo () {
-      this.$store.commit('addTodo', this.newtodo)
+      if (this.newtodo.length > 0) {
+        this.$store.commit('addTodo', this.newtodo)
+        this.newtodo = ''
+      }
     },
     delTodo (index) {
       this.$store.commit('delTodo', index)
@@ -66,6 +81,19 @@ export default {
     }
   },
   computed: {
+    pagetodo: {
+      get () {
+        const start = (this.currentPage - 1) * this.perPage
+        const end = this.currentPage * this.perPage
+        return this.todos.slice(start, end)
+      },
+      set (value) {
+        console.log(value)
+        const start = (this.currentPage - 1) * this.perPage
+        // const end = this.currentPage * this.perPage
+        this.todos.splice(start, this.perPage, ...value)
+      }
+    },
     todos: {
       get () {
         return this.$store.getters.todos
@@ -73,7 +101,19 @@ export default {
       set (value) {
         this.$store.commit('dragTodo', value)
       }
+    },
+    rows () {
+      return this.$store.getters.todos.length
     }
   }
 }
+
 </script>
+
+<style lang="stylus">
+#list
+  #pagination
+    width 100%
+    position absolute
+    bottom 8%
+</style>
