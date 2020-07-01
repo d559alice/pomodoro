@@ -14,12 +14,23 @@ const routes = [
     }
   },
   {
+    path: '/home',
+    name: 'Home',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+    meta: {
+      title: '番茄鐘'
+    }
+  },
+  {
     path: '/list',
     name: 'List',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/List.vue'),
+    component: () => import(/* webpackChunkName: "list" */ '../views/List.vue'),
     meta: {
       title: '番茄鐘 | 設定清單'
     }
@@ -30,7 +41,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Settings.vue'),
+    component: () => import(/* webpackChunkName: "settings" */ '../views/Settings.vue'),
     meta: {
       title: '番茄鐘 | 設定'
     }
@@ -38,7 +49,7 @@ const routes = [
   {
     path: '*',
     name: 'NotFound',
-    component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue'),
+    component: () => import(/* webpackChunkName: "*" */ '../views/NotFound.vue'),
     meta: {
       title: '番茄鐘 | 404'
     }
